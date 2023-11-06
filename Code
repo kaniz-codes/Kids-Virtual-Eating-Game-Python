@@ -35,9 +35,9 @@ def resetObject():
     global isEatable
     pos[0] = random.randint(100, 1180)
     pos[1] = 0
-    randNo = random.randint(0, 3) #Ratio of eatable / noneatable
+    randNo = random.randint(0, 5) #Ratio of eatable / noneatable
     if randNo == 0:
-        currentObject = nonEatables[random.randint(0, 4)]
+        currentObject = nonEatables[random.randint(0, 3)]
         isEatable = False
 
     else:
@@ -110,4 +110,11 @@ while True:
         cv2.putText(img, 'Game Over', (300, 400), cv2.FONT_HERSHEY_PLAIN, 7, (255, 0, 255), 10)
 
     cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    key = cv2.waitKey(1)
+
+    if key == ord('r'):
+        resetObject()
+        gameOver = False
+        count = 0
+        currentObject = eatables[0]
+        isEatable = True
